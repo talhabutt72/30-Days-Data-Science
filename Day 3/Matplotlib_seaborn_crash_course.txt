@@ -1,0 +1,101 @@
+
+==============================
+Matplotlib Crash Course
+==============================
+
+Matplotlib is a basic plotting library in Python, especially good for simple charts.
+
+1. Importing
+import matplotlib.pyplot as plt
+
+2. Line Plot
+x = [1, 2, 3, 4]
+y = [10, 20, 25, 30]
+plt.plot(x, y)
+plt.title("Line Plot")
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+plt.grid(True)
+plt.show()
+
+3. Bar Plot
+categories = ['A', 'B', 'C']
+values = [10, 20, 15]
+plt.bar(categories, values)
+plt.title("Bar Plot")
+plt.show()
+
+4. Histogram
+data = [1,1,2,3,3,3,4,4,5,5,5,5]
+plt.hist(data, bins=5)
+plt.title("Histogram")
+plt.show()
+
+5. Scatter Plot
+x = [1, 2, 3, 4]
+y = [10, 20, 25, 30]
+plt.scatter(x, y)
+plt.title("Scatter Plot")
+plt.show()
+
+6. Subplots
+plt.subplot(1, 2, 1)
+plt.plot([1,2,3], [4,5,6])
+plt.title("Plot 1")
+plt.subplot(1, 2, 2)
+plt.plot([1,2,3], [6,5,4])
+plt.title("Plot 2")
+plt.tight_layout()
+plt.show()
+
+==============================
+Seaborn Crash Course
+==============================
+
+Seaborn is built on top of Matplotlib and is used for statistical plots with nicer themes.
+
+1. Importing
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+2. Load Example Dataset
+df = sns.load_dataset("tips")  # built-in dataset
+
+3. Line Plot
+sns.lineplot(x="total_bill", y="tip", data=df)
+plt.title("Line Plot")
+plt.show()
+
+4. Bar Plot
+sns.barplot(x="day", y="total_bill", data=df)
+plt.title("Bar Plot")
+plt.show()
+
+5. Count Plot (like value_counts)
+sns.countplot(x="day", data=df)
+plt.title("Count Plot")
+plt.show()
+
+6. Box Plot (distribution + outliers)
+sns.boxplot(x="day", y="total_bill", data=df)
+plt.title("Box Plot")
+plt.show()
+
+7. Violin Plot (like boxplot + KDE)
+sns.violinplot(x="day", y="total_bill", data=df)
+plt.title("Violin Plot")
+plt.show()
+
+8. Heatmap (correlation or matrix plot)
+corr = df.corr(numeric_only=True)
+sns.heatmap(corr, annot=True, cmap="coolwarm")
+plt.title("Heatmap")
+plt.show()
+
+9. Pairplot (scatter matrix)
+sns.pairplot(df)
+plt.suptitle("Pair Plot", y=1.02)
+plt.show()
+
+10. Styling
+sns.set_style("whitegrid")  # other options: "darkgrid", "ticks", etc.
