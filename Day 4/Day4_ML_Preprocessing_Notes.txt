@@ -1,0 +1,69 @@
+
+📅 Machine Learning Study Notes - June 24, 2025
+
+✅ Today's Focus: Data Preprocessing, Encoding, and Train-Test Split
+
+----------------------------------------
+1. 🎯 Goal:
+- Prepare dataset for training ML models.
+- Understand encoding techniques.
+- Perform train-test split.
+
+----------------------------------------
+2. 🧼 Data Cleaning:
+- Dropped irrelevant column: `customerID` (just an identifier).
+  Code: dataset.drop('customerID', axis=1, inplace=True)
+
+- Handled missing values in 'TotalCharges':
+  dataset['TotalCharges'] = pd.to_numeric(dataset['TotalCharges'], errors='coerce')
+  dataset.dropna(inplace=True)
+
+----------------------------------------
+3. 🧠 Encoding Categorical Features:
+
+💡 Use `.map()` for simple binary values (e.g. "Yes"/"No"):
+  dataset["Churn"] = dataset["Churn"].map({{"Yes": 1, "No": 0}})
+
+💡 Loop-based encoding for multiple columns:
+  cols = [...]
+  for col in cols:
+      uniques = dataset[col].unique()
+      mapping = {{v: i for i, v in enumerate(uniques)}}
+      dataset[col] = dataset[col].map(mapping)
+
+📌 Types of Encoding:
+- Label Encoding: Assigns integer to each category.
+- One-Hot Encoding: Creates new column for each category (no order).
+- Ordinal Encoding: Used when categories have a meaningful order.
+- pd.get_dummies(): Same as one-hot encoding.
+
+----------------------------------------
+4. 🧪 Train-Test Split:
+
+💡 Split features and target:
+  X = dataset.drop("Churn", axis=1)
+  y = dataset["Churn"]
+
+💡 Split the data:
+  from sklearn.model_selection import train_test_split
+  X_train, X_test, y_train, y_test = train_test_split(
+      X, y, test_size=0.2, random_state=42
+  )
+
+📌 What Each Means:
+- X = Inputs (features)
+- y = Output (label)
+- X_train / y_train → Used to train model
+- X_test / y_test → Used to test and evaluate
+
+----------------------------------------
+
+🧠 Summary:
+✔ Data cleaned and encoded
+✔ Columns are numeric
+✔ Data is split into training and testing sets
+✔ Ready to train first ML model (e.g. Logistic Regression)
+
+🚀 Next Step: Train Logistic Regression or RandomForest model.
+
+Keep going — you're doing amazing! 💪
